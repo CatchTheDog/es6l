@@ -1,4 +1,12 @@
 //模拟Iterator
+// 原生具备 Iterator 接口的数据结构如下。
+// Array
+// Map
+// Set
+// String
+// TypedArray
+// 函数的 arguments 对象
+// NodeList 对象
 function makeIterator(array){
     let nextIndex = 0;
     return {
@@ -54,3 +62,21 @@ function range(start,stop) {
 for(let value of range(0,3)){
     console.log(value);
 }
+
+let arr = ['a', 'b', 'c'];
+let iter = arr[Symbol.iterator]();
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next());
+
+NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+//or
+NodeList.prototype[Symbol.iterator] = [][Symbol.iterator];
+[...document.querySelectorAll('div')]
+
+//调用Iterator接口的场景
+// 1.解构赋值
+// 2.扩展运算符
+// 3.yield*
+// 4.接受数组作为参数的场合
